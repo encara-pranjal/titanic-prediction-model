@@ -1,0 +1,34 @@
+# Render configuration for Titanic Survival Prediction Streamlit app
+# This file configures the web service deployment on Render.com
+
+# Service configuration
+service:
+  type: web
+  name: titanic-survival-prediction
+  runtime: python
+  pythonVersion: 3.12  # Use the latest stable version Render supports
+
+  # Build configuration - install dependencies
+  buildCommand: "pip install -r requirements.txt"
+
+  # Start command - run Streamlit on Render's assigned port
+  startCommand: "streamlit run app.py --server.port $PORT --server.enableCORS false"
+
+  # Environment variables (optional)
+  envVars:
+    PYTHONUNBUFFERED: "1"  # Ensure unbuffered output for better logging
+
+# Health check configuration
+healthCheck:
+  path: "/"
+  interval: 30
+
+# Resource allocation (optional - can be adjusted based on needs)
+# Resources:
+#   cpu: 0.5
+#   memory: 512MB
+
+# Static assets configuration (if you have CSS, JS files, etc.)
+# staticServe:
+#   paths:
+#     - "./static"
