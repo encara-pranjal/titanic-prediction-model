@@ -2,7 +2,6 @@ import joblib
 import pandas as pd
 from feature_engineering import TitanicFeatureEngineer
 
-# Test loading the new model
 pipeline = joblib.load('best_model_pipeline.pkl')
 
 sample_passenger = pd.DataFrame([{

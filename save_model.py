@@ -7,12 +7,10 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from feature_engineering import TitanicFeatureEngineer
 
-# 1. Load Data
 df = pd.read_csv('train.csv')
 X = df.drop(columns=['Survived'])
 y = df['Survived']
 
-# 2. Re-create Pipeline (with updated class logic)
 num_features = ['Age', 'Fare', 'individual_fare', 'FamilySize']
 cat_features = ['Sex', 'Embarked', 'Pclass', 'Title', 'Family_type']
 
@@ -28,7 +26,6 @@ full_pipeline = Pipeline([
     ('model', LogisticRegression(class_weight='balanced', random_state=42))
 ])
 
-# 3. Fit & Save
 full_pipeline.fit(X, y)
 joblib.dump(full_pipeline, 'best_model_pipeline.pkl')
 
